@@ -1,0 +1,60 @@
+<div class="left-side-bar">
+  <div class="brand-logo">
+    <a href="/">
+      <img src="/img/logo-white.png" alt="" />
+    </a>
+    <div class="close-sidebar" data-toggle="left-sidebar-close">
+      <i class="ion-close-round"></i>
+    </div>
+  </div>
+  <div class="menu-block customscroll">
+    <div class="sidebar-menu">
+      <ul id="accordion-menu">
+        <li class="dropdown">
+          <a href="/admin/<%=user._id %>" class="dropdown-toggle no-arrow">
+            <span class="micon ti-dashboard"></span>
+            <span class="mtext">Dashboard</span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="/admin/<%=user._id %>/users" class="dropdown-toggle no-arrow">
+            <span class="micon fa fa-users" aria-hidden="true"></span>
+            <span class="mtext">Users</span>
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="javascript:;" class="dropdown-toggle">
+            <span class="micon dw dw-library"></span
+            ><span class="mtext">Services</span>
+          </a>
+          <ul class="submenu">
+            <li><a href="/admin/<%=user._id %>/makeup">Makeup</a></li>
+            <li><a href="/admin/<%=user._id %>/decoration">Decoration</a></li>
+            <li><a href="/admin/<%=user._id %>/music">Music</a></li>
+            <li><a href="/admin/<%=user._id %>/food">Food</a></li>
+            <li><a href="/admin/<%=user._id %>/photographer">Photographer</a></li>
+            <li><a href="/admin/<%=user._id %>/videographer">Videographer</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="/admin/<%=user._id %>/halls" class="dropdown-toggle no-arrow">
+            <span class="micon dw dw-city-hall"></span
+            ><span class="mtext">Halls</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/<%=user._id %>/chats" class="dropdown-toggle no-arrow">
+            <span class="micon dw dw-chat3"></span
+            ><span class="mtext">Chats</span>
+          </a>
+        </li>
+        <li>
+          <a href="/admin/<%=user._id %>/reviews" class="dropdown-toggle no-arrow">
+            <span class="micon fa fa-commenting"></span
+            ><span class="mtext">Reviews</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

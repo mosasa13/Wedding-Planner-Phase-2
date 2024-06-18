@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/headTag.ejs') %>
+  <body class="login-page">
+    <div class="login-header box-shadow">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <div class="brand-logo">
+          <a href="/">
+            <img src="/img/logo-black.png" alt="Logo" />
+          </a>
+        </div>
+        <div class="login-menu">
+          <ul>
+            <li><a href="/signIn">Sign in</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div
+      class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center"
+      style="
+        background-image: url('https://img.freepik.com/free-photo/groom-putting-ring-bride-s-finger_1157-338.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1714435200&semt=sph');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      "
+    >
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="register-box bg-white box-shadow border-radius-10">
+            <div class="wizard-content">
+              <form
+                class="tab-wizard2 wizard-circle wizard"
+                id="registration-form"
+              >
+                <h5>Basic Account Credentials</h5>
+                <section>
+                  <div class="form-wrap max-width-600 mx-auto">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"
+                        >Email Address<span class="text-danger">* </span></label
+                      >
+                      <div class="col-sm-8">
+                        <input
+                          type="email"
+                          class="form-control"
+                          name="email"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"
+                        >Username<span class="text-danger">* </span></label
+                      >
+                      <div class="col-sm-8">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="username"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"
+                        >Password<span class="text-danger">* </span></label
+                      >
+                      <div class="col-sm-8">
+                        <input
+                          type="password"
+                          class="form-control"
+                          name="password"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label"
+                        >Confirm Password<span class="text-danger"
+                          >*
+                        </span></label
+                      >
+                      <div class="col-sm-8">
+                        <input
+                          type="password"
+                          class="form-control"
+                          name="confirmPassword"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- Step 2 -->
+                <h5>Personal Information</h5>
+                <section>
+                  <div class="form-wrap max-width-600 mx-auto">
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Full Name</label>
+                      <div class="col-sm-8">
+                        <input
+                          type="text"
+                          class="form-control"
+                          name="fullName"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="form-group row align-items-center">
+                      <label class="col-sm-4 col-form-label">Gender</label>
+                      <div class="col-sm-8">
+                        <div
+                          class="custom-control custom-radio custom-control-inline pb-0"
+                        >
+                          <input
+                            type="radio"
+                            id="male"
+                            name="gender"
+                            value="male"
+                            class="custom-control-input"
+                            required
+                          />
+                          <label class="custom-control-label" for="male"
+                            >Male</label
+                          >
+                        </div>
+                        <div
+                          class="custom-control custom-radio custom-control-inline pb-0"
+                        >
+                          <input
+                            type="radio"
+                            id="female"
+                            name="gender"
+                            value="female"
+                            class="custom-control-input"
+                            required
+                          />
+                          <label class="custom-control-label" for="female"
+                            >Female</label
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Phone</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="phone" />
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">City</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="city" />
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- Step 3 -->
+                <h5>Overview Information</h5>
+                <section>
+                  <div class="form-wrap max-width-600 mx-auto">
+                    <ul class="register-info">
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Email Address</div>
+                          <div class="col-sm-8" id="overview-email">-</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Username</div>
+                          <div class="col-sm-8" id="overview-username">-</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Password</div>
+                          <div class="col-sm-8" id="overview-password">-</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Full Name</div>
+                          <div class="col-sm-8" id="overview-fullName">-</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Phone</div>
+                          <div class="col-sm-8" id="overview-phone">-</div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="row">
+                          <div class="col-sm-4 weight-600">Location</div>
+                          <div class="col-sm-8" id="overview-location">-</div>
+                        </div>
+                      </li>
+                    </ul>
+                    <div class="custom-control custom-checkbox mt-4">
+                      <input
+                        type="checkbox"
+                        class="custom-control-input"
+                        id="customCheck1"
+                        required
+                      />
+                      <label class="custom-control-label" for="customCheck1">
+                        I have read and agreed to the terms of services and
+                        privacy policy
+                      </label>
+                    </div>
+                  </div>
+                </section>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="/vendors/scripts/core.js"></script>
+    <script src="/vendors/scripts/script.min.js"></script>
+    <script src="/vendors/scripts/process.js"></script>
+    <script src="/vendors/scripts/layout-settings.js"></script>
+    <script src="/plugins/jquery-steps/jquery.steps.js"></script>
+    <script src="/vendors/scripts/steps-setting.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/validator@13.7.0/validator.min.js"></script>
+    <script type="module">
+      import showMsg from "/js/toastify.js";
+
+      document
+        .getElementById("registration-form")
+        .addEventListener("change", function (event) {
+          const formData = new FormData(this);
+          document.getElementById("overview-email").textContent =
+            formData.get("email") || "-";
+          document.getElementById("overview-username").textContent =
+            formData.get("username") || "-";
+          document.getElementById("overview-password").textContent =
+            formData.get("password") || "-";
+          document.getElementById("overview-fullName").textContent =
+            formData.get("fullName") || "-";
+          document.getElementById("overview-location").textContent =
+            formData.get("city") || "-";
+          document.getElementById("overview-phone").textContent =
+            formData.get("phone") || "-";
+        });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const submitLink = document.querySelector(
+          'a[href="#finish"][role="menuitem"]'
+        );
+        if (submitLink) {
+          submitLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            const form = new FormData(
+              document.getElementById("registration-form")
+            );
+            const email = form.get("email");
+            const username = form.get("username");
+            const password = form.get("password");
+            const confirmPassword = form.get("confirmPassword");
+
+            if (!validator.isEmail(email)) {
+              showMsg("Please enter a valid email address.", "orange");
+              return;
+            }
+
+            if (!username) {
+              showMsg("Please enter a username", "orange");
+              return;
+            }
+
+            if (!validator.isStrongPassword(password)) {
+              showMsg(
+                "Password must be at least 8 characters long and contain a combination of uppercase, lowercase, and numeric characters.",
+                "orange"
+              );
+              return;
+            }
+
+            if (password !== confirmPassword) {
+              showMsg(
+                "Passwords do not match. Please re-enter your passwords.",
+                "orange"
+              );
+              return;
+            }
+
+            const jsonData = {};
+            form.forEach((value, key) => {
+              jsonData[key] = value;
+            });
+            const jsonString = JSON.stringify(jsonData);
+
+            fetch("/signup", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: jsonString,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.errMsg) return showMsg(data.errMsg, "red");
+                else showMsg("Account created successfully", "green");
+                
+                location.assign("/signin");
+              })
+              .catch((error) => {
+                showMsg("Error: " + error, "red");
+              });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

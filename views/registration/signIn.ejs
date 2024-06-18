@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('../components/headTag.ejs') %>
+  </head>
+  <body class="login-page">
+    <header class="login-header box-shadow">
+      <div
+        class="container-fluid d-flex justify-content-between align-items-center"
+      >
+        <div class="brand-logo">
+          <a href="/">
+            <img src="/img/logo-black.png" alt="Logo" />
+          </a>
+        </div>
+        <div class="login-menu">
+          <ul>
+            <li><a href="/signUp">Sign up</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main
+      class="login-wrap d-flex align-items-center flex-wrap justify-content-center"
+      style="
+        background-image: url('https://img.freepik.com/free-photo/groom-putting-ring-bride-s-finger_1157-338.jpg?size=626&ext=jpg&ga=GA1.1.1224184972.1714435200&semt=sph');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+      "
+    >
+      <div class="container">
+        <div class="align-items-center">
+          <div class="login-box bg-white box-shadow border-radius-10">
+            <div class="login-title">
+              <h2 class="text-center text-primary">Login</h2>
+            </div>
+            <form id="login-form">
+              <div class="input-group custom">
+                <input
+                  type="text"
+                  class="form-control form-control-lg"
+                  id="username"
+                  placeholder="Username"
+                />
+                <div class="input-group-append custom">
+                  <span class="input-group-text"
+                    ><i class="icon-copy dw dw-user1"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="input-group custom">
+                <input
+                  type="password"
+                  class="form-control form-control-lg"
+                  id="password"
+                  placeholder="**********"
+                />
+                <div class="input-group-append custom">
+                  <span class="input-group-text"
+                    ><i class="dw dw-padlock1"></i
+                  ></span>
+                </div>
+              </div>
+              <div class="row pb-30">
+                <div class="col-6">
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customCheck1"
+                    />
+                    <label class="custom-control-label" for="customCheck1"
+                      >Remember</label
+                    >
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="forgot-password">
+                    <a href="/forgetPassword">Forgot Password ?</a>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="input-group mb-0">
+                    <input
+                      class="btn btn-primary btn-lg btn-block"
+                      type="submit"
+                      value="Sign In"
+                    />
+                  </div>
+                  <div
+                    class="font-16 weight-600 pt-10 pb-10 text-center"
+                    data-color="#707373"
+                  >
+                    OR
+                  </div>
+                  <div class="input-group mb-0">
+                    <a
+                      class="btn btn-outline-primary btn-lg btn-block"
+                      href="/signUp"
+                      >Create Account</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- JavaScript -->
+    <script src="/vendors/scripts/core.js"></script>
+    <script src="/vendors/scripts/script.min.js"></script>
+    <script src="/vendors/scripts/process.js"></script>
+    <script src="/vendors/scripts/layout-settings.js"></script>
+    <script type="module">
+      import showMsg from "/js/toastify.js";
+      document
+        .getElementById("login-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+
+          fetch("/signin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username, password }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.errMsg) return showMsg(data.errMsg, "red");
+              else location.assign(`/${data.user.role}/${data.user._id}`);
+            })
+            .catch((error) => {
+              showMsg("Error: " + error, "red");
+            });
+        });
+    </script>
+  </body>
+</html>

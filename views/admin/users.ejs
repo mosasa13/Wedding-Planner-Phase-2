@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+  <%- include('../components/headTag.ejs') %>
+  <body>
+    <%- include('./components/header.ejs') %> <%-
+    include('./components/navbar.ejs') %>
+    <div class="mobile-menu-overlay"></div>
+
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+            <button
+              type="button"
+              class="btn-close border-0 bg-transparent"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="icon-copy fa fa-close" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addUserForm">
+              <div class="mb-3">
+                <label for="fullName" class="form-label">Full Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="fullName"
+                  name="fullName"
+                  placeholder="Enter full name"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="username" class="form-label"
+                  >Username<span class="text-danger">* </span></label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  placeholder="Enter username"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label"
+                  >Email<span class="text-danger">* </span></label
+                >
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label"
+                  >Password<span class="text-danger">* </span></label
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-control" id="role" name="role">
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="phone" class="form-label">Phone</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="phone"
+                  name="phone"
+                  placeholder="Enter phone number"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="city"
+                  name="city"
+                  placeholder="Enter city"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <div class="mb-20 d-flex justify-content-between p-3">
+        <h1>Users</h1>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          + Add User
+        </button>
+      </div>
+      <div class="card-box mb-30">
+        <div class="pb-20 pt-20">
+          <table class="data-table table hover nowrap">
+            <thead>
+              <tr>
+                <th class="table-plus datatable-nosort">Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Gender</th>
+                <th class="datatable-nosort">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% users.forEach(user => { %>
+              <tr>
+                <td class="table-plus"><%= user.fullName %></td>
+                <td><%= user.username %></td>
+                <td><%= user.email %></td>
+                <td><%= user.role %></td>
+                <td><%= user.phone %></td>
+                <td><%= user.city %></td>
+                <td><%= user.gender %></td>
+                <td>
+                  <div class="dropdown">
+                    <a
+                      class="btn btn-link font-24 p-0 line-height-1 no-arrow dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-toggle="dropdown"
+                    >
+                      <i class="dw dw-more"></i>
+                    </a>
+                    <div
+                      class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
+                    >
+                      <button class="dropdown-item">
+                        <i class="dw dw-edit2"></i> Edit
+                      </button>
+                      <button class="dropdown-item text-danger">
+                        <i
+                          class="icon-copy fa fa-trash-o"
+                          aria-hidden="true"
+                        ></i
+                        >Delete
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- js -->
+    <script src="/vendors/scripts/core.js"></script>
+    <script src="/vendors/scripts/script.min.js"></script>
+    <script src="/vendors/scripts/process.js"></script>
+    <script src="/vendors/scripts/layout-settings.js"></script>
+    <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.flash.min.js"></script>
+    <script src="/plugins/datatables/js/pdfmake.min.js"></script>
+    <script src="/plugins/datatables/js/vfs_fonts.js"></script>
+    <script src="/vendors/scripts/datatable-setting.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/validator@13.7.0/validator.min.js"></script>
+    <script type="module">
+      import showMsg from "/js/toastify.js";
+      const form = document.getElementById("addUserForm");
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const email = formData.get("email");
+        const username = formData.get("username");
+        const password = formData.get("password");
+        const fullName = formData.get("fullName");
+
+        if (!username) {
+          showMsg("Please enter a username", "orange");
+          return;
+        }
+
+        if (!validator.isEmail(email)) {
+          showMsg("Please enter a valid email address.", "orange");
+          return;
+        }
+
+        if (!validator.isStrongPassword(password)) {
+          showMsg(
+            "Password must be at least 8 characters long and contain a combination of uppercase, lowercase, and numeric characters.",
+            "orange"
+          );
+          return;
+        }
+
+        const jsonData = {};
+        formData.forEach((value, key) => {
+          jsonData[key] = value;
+        });
+        const jsonString = JSON.stringify(jsonData);
+
+        fetch("/admin/add/user", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: jsonString,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.errMsg) showMsg(data.errMsg, "red");
+            else {
+              showMsg("User added successfully", "green");
+              location.reload();
+            }
+          })
+          .catch((error) => {
+            showMsg("Error: " + error, "red");
+          });
+      });
+    </script>
+  </body>
+</html>
