@@ -22,7 +22,9 @@ router.get("/:id/makeup", makeup.makeup_get);
 router.get("/:id/music", music.music_get);
 router.get("/:id/photographer", photographer.photographer_get);
 router.get("/:id/videographer", videographer.videographer_get);
-router.get("/:id/halls", halls.halls_get);
+router.get("/:id/halls", halls.halls_get_handler);
+router.post("/add/halls", halls.halls_post_handler);
+
 router.get("/:id/chats", chats.chat_get);
 router.get("/:id/reviews", reviews.reviews_get);
 

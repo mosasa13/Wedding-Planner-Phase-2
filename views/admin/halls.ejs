@@ -1,23 +1,30 @@
 <!DOCTYPE html>
-<html>
-  <%- include('../components/headTag.ejs') %>
-  <body>
-    <%- include('./components/header.ejs') %> <%-
-    include('./components/navbar.ejs') %>
-    <div class="mobile-menu-overlay"></div>
-    <div class="main-container">
-      <h1>halls</h1>
-    </div>
-    <!-- js -->
-    <script src="/vendors/scripts/core.js"></script>
-    <script src="/vendors/scripts/script.min.js"></script>
-    <script src="/vendors/scripts/process.js"></script>
-    <script src="/vendors/scripts/layout-settings.js"></script>
-    <script src="/plugins/apexcharts/apexcharts.min.js"></script>
-    <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/plugins/datatables/js/dataTables.responsive.min.js"></script>
-    <script src="/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
-    <script src="/vendors/scripts/dashboard.js"></script>
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Hall</title>
+</head>
+<body>
+  <h1>Add New Hall</h1>
+  <form action="/admin/add/halls" method="POST" enctype="multipart/form-data">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    
+    <label for="capacity">Capacity:</label>
+    <input type="number" id="capacity" name="capacity" required><br><br>
+    
+    <label for="location">Location:</label>
+    <input type="text" id="location" name="location" required><br><br>
+    
+    <label for="availability">Availability:</label>
+    <input type="text" id="availability" name="availability" required><br><br>
+    
+    <label for="picture">Picture:</label>
+    <input type="file" id="picture" name="picture" accept="image/*" required><br><br>
+    
+    <button type="submit">Add Hall</button>
+</form>
+
+</body>
 </html>

@@ -13,3 +13,4 @@ export default {
   email_host: process.env.HOST,
   email_port: process.env.EMAIL_PORT,
 };
+

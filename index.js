@@ -1,35 +1,43 @@
-import express from "express";
-import cookieParser from "cookie-parser";
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import mongoose from 'mongoose';
+import secrets from './config/secrets.js';
+import connectDB from './config/db.js';
+import adminAuth from './middlewares/adminAuth.js';
+import registrationRouter from './routes/registration.js';
+import adminRouter from './routes/admin.js';
+import userRouter from './routes/user.js';
+
 const app = express();
-import secrets from "./config/secrets.js";
 const { port } = secrets;
-import connectDB from "./config/db.js";
-//routers
-import adminRouter from "./routes/admin.js";
-import userRouter from "./routes/user.js";
-import registrationRouter from "./routes/registration.js";
-//middlewares
-import adminAuth from "./middlewares/adminAuth.js";
 
-app.use(express.static("public")); // to read static files (css ,js ,img)
-app.use(express.json()); // to read req.body
-app.use(express.urlencoded({ extended: true })); // to read req.body
+// Middleware setup
+app.use(express.static('public'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.set("view engine", "ejs"); // to set view engine to ejs
+app.set('view engine', 'ejs');
 
-app.use("/", registrationRouter);
-app.use("/admin", adminAuth, adminRouter);
-app.use("/user", userRouter);
+// Connect to MongoDB
+connectDB();
 
-app.get("/", (req, res) => {
-  res.render("./index.ejs", { title: "Home Page" });
+// Routes setup
+app.use('/', registrationRouter);
+app.use('/admin', adminAuth, adminRouter);
+app.use('/user', userRouter);
+
+// Homepage route
+app.get('/', (req, res) => {
+  res.render('./index.ejs', { title: 'Home Page' });
 });
 
+// 404 Error handling middleware
 app.use((req, res, next) => {
-  res.status(404).render("404");
+  res.status(404).render('404');
 });
 
-app.listen(port, () => {
-  connectDB();
-  console.log(`Example app listening on port ${port}`);
+// Start server
+const PORT = process.env.PORT || port;
+app.listen(PORT, () => {
+  console.log(`Example app listening on port ${PORT}`);
 });
