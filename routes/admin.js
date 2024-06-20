@@ -11,21 +11,22 @@ import photographer from "../controllers/admin/photographer.js";
 import videographer from "../controllers/admin/videographer.js";
 import halls from "../controllers/admin/halls.js";
 import chats from "../controllers/admin/chats.js";
-import reviews from "../controllers/admin/reviews.js";
+import products from "../controllers/admin/products.js";
 
 router.get("/:id/", dashboard.dashboard_get);
 router.get("/:id/users", users.users_get);
+
 router.post("/add/user", users.users_post);
+router.delete("/delete/user/:userId", users.users_delete);
+
 router.get("/:id/decoration", decoration.decoration_get);
 router.get("/:id/food", food.food_get);
 router.get("/:id/makeup", makeup.makeup_get);
 router.get("/:id/music", music.music_get);
 router.get("/:id/photographer", photographer.photographer_get);
 router.get("/:id/videographer", videographer.videographer_get);
-router.get("/:id/halls", halls.halls_get_handler);
-router.post("/add/halls", halls.halls_post_handler);
-
+//router.get("/:id/halls", halls.halls_get);
 router.get("/:id/chats", chats.chat_get);
-router.get("/:id/reviews", reviews.reviews_get);
+router.get("/:id/products", products.products_get);
 
 export default router;

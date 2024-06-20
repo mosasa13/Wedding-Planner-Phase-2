@@ -1,4 +1,5 @@
 import userModel from "../../models/User.js";
+import mongoose from "mongoose";
 
 const users_get = async (req, res) => {
   res.render("admin/users", {
@@ -40,4 +41,16 @@ const users_post = async (req, res) => {
   return res.status(201).json({ user: newUser });
 };
 
-export default { users_get, users_post };
+const users_delete = async (req, res) => {
+  const { userId } = req.params;
+
+
+  if (!mongoose.Types.ObjectId.isValid(userId))
+    return res.status(404).send(`No user with id: ${userId}`);
+
+  await userModel.findByIdAndDelete(userId);
+
+  res.json({ message: "User deleted successfully" });
+};
+
+export default { users_get, users_post, users_delete };

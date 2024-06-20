@@ -17,9 +17,21 @@
           </a>
         </li>
         <li class="dropdown">
-          <a href="/admin/<%=user._id %>/users" class="dropdown-toggle no-arrow">
+          <a
+            href="/admin/<%=user._id %>/users"
+            class="dropdown-toggle no-arrow"
+          >
             <span class="micon fa fa-users" aria-hidden="true"></span>
             <span class="mtext">Users</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="/admin/<%=user._id %>/products"
+            class="dropdown-toggle no-arrow"
+          >
+            <span class="micon fa fa-shopping-basket"></span
+            ><span class="mtext">Products</span>
           </a>
         </li>
         <li class="dropdown">
@@ -32,26 +44,30 @@
             <li><a href="/admin/<%=user._id %>/decoration">Decoration</a></li>
             <li><a href="/admin/<%=user._id %>/music">Music</a></li>
             <li><a href="/admin/<%=user._id %>/food">Food</a></li>
-            <li><a href="/admin/<%=user._id %>/photographer">Photographer</a></li>
-            <li><a href="/admin/<%=user._id %>/videographer">Videographer</a></li>
+            <li>
+              <a href="/admin/<%=user._id %>/photographer">Photographer</a>
+            </li>
+            <li>
+              <a href="/admin/<%=user._id %>/videographer">Videographer</a>
+            </li>
           </ul>
         </li>
         <li>
-          <a href="/admin/<%=user._id %>/halls" class="dropdown-toggle no-arrow">
+          <a
+            href="/admin/<%=user._id %>/halls"
+            class="dropdown-toggle no-arrow"
+          >
             <span class="micon dw dw-city-hall"></span
             ><span class="mtext">Halls</span>
           </a>
         </li>
         <li>
-          <a href="/admin/<%=user._id %>/chats" class="dropdown-toggle no-arrow">
+          <a
+            href="/admin/<%=user._id %>/chats"
+            class="dropdown-toggle no-arrow"
+          >
             <span class="micon dw dw-chat3"></span
             ><span class="mtext">Chats</span>
-          </a>
-        </li>
-        <li>
-          <a href="/admin/<%=user._id %>/reviews" class="dropdown-toggle no-arrow">
-            <span class="micon fa fa-commenting"></span
-            ><span class="mtext">Reviews</span>
           </a>
         </li>
       </ul>

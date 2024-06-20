@@ -1,10 +1,10 @@
 import userModel from "../../models/User.js";
 
-const reviews_get = async (req, res) => {
-  res.render("admin/reviews", {
+const products_get = async (req, res) => {
+  res.render("admin/products", {
     title: "Reviews",
     user: await userModel.findById(req.params.id),
   });
 };
 
-export default { reviews_get };
+export default { products_get };
