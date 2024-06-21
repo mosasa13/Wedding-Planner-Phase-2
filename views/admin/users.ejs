@@ -254,13 +254,14 @@
         });
         const jsonString = JSON.stringify(jsonData);
 
-        fetch("/admin/add/user", {
+        fetch("/admin/user", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: jsonString,
         })
           .then((response) => response.json())
           .then((data) => {
+            console.log(data)
             if (data.errMsg) showMsg(data.errMsg, "red");
             else {
               showMsg("User added successfully", "green");
@@ -280,7 +281,7 @@
           button.addEventListener("click", async (event) => {
             const userId = event.target.getAttribute("data-id");
 
-            const response = await fetch(`/admin/delete/user/${userId}`, {
+            const response = await fetch(`/admin/user/${userId}`, {
               method: "DELETE",
             });
 

@@ -5,15 +5,286 @@
     <%- include('./components/header.ejs') %> <%-
     include('./components/navbar.ejs') %>
     <div class="mobile-menu-overlay"></div>
-    <div class="main-container">
-      <div class="p-3">
-        <h1>products</h1>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+            <button
+              type="button"
+              class="btn-close border-0 bg-transparent"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="icon-copy fa fa-close" aria-hidden="true"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form id="addProductForm">
+              <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="name"
+                  placeholder="Enter product name"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  name="price"
+                  placeholder="Enter product price"
+                  required
+                  min="0"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  name="description"
+                  placeholder="Enter product description"
+                  rows="3"
+                ></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="category" class="form-label">Category</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="category"
+                  name="category"
+                  placeholder="Enter product category"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="brand" class="form-label">Brand</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="brand"
+                  name="brand"
+                  placeholder="Enter product brand"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="stock"
+                  name="stock"
+                  placeholder="Enter stock quantity"
+                  required
+                  min="0"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="images" class="form-label">Images</label>
+                <input
+                  type="file"
+                  class="form-control"
+                  id="images"
+                  name="images"
+                  multiple
+                />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Close
+                </button>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
+
+    <div class="main-container">
+      <div class="mb-20 d-flex justify-content-between p-3">
+        <h1>Products</h1>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+        >
+          + Add Product
+        </button>
+      </div>
+      <div class="card-box mb-30">
+        <div class="p-4">
+          <% if (products && products.length > 0) { %>
+          <div class="row clearfix">
+            <% products.forEach(product => { %>
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
+              <div class="card card-box">
+                <img
+                  class="card-img-top"
+                  src="<%= product.images[0]%>"
+                  alt="<%= product.name %>"
+                />
+                <div class="card-body">
+                  <h5 class="card-title weight-500"><%= product.name %></h5>
+                  <p class="card-text"><%= product.description %></p>
+                  <p class="card-text font-weight-bold">
+                    <%= product.price %> EGP
+                  </p>
+                  <div class="d-flex justify-content-between">
+                    <a href="<%= product.link %>" class="btn btn-primary"
+                      >Show more</a
+                    >
+                    <button
+                      type="button"
+                      class="btn btn-danger delete-button"
+                      data-id="<%= product._id %>"
+                    >
+                      <i class="icon-copy fa fa-trash-o" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+          <% } else { %>
+          <p>No products available</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+
     <!-- js -->
     <script src="/vendors/scripts/core.js"></script>
     <script src="/vendors/scripts/script.min.js"></script>
     <script src="/vendors/scripts/process.js"></script>
     <script src="/vendors/scripts/layout-settings.js"></script>
+    <script src="/plugins/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.print.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.html5.min.js"></script>
+    <script src="/plugins/datatables/js/buttons.flash.min.js"></script>
+    <script src="/plugins/datatables/js/pdfmake.min.js"></script>
+    <script src="/plugins/datatables/js/vfs_fonts.js"></script>
+    <script src="/vendors/scripts/datatable-setting.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/validator@13.7.0/validator.min.js"></script>
+    <script type="module">
+      import showMsg from "/js/toastify.js";
+
+      document
+        .getElementById("addProductForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const formData = new FormData(event.target);
+          const name = formData.get("name");
+          const price = formData.get("price");
+          const description = formData.get("description");
+          const category = formData.get("category");
+          const brand = formData.get("brand");
+          const stock = formData.get("stock");
+          const images = formData.getAll("images");
+
+          const productData = {
+            name,
+            price: parseFloat(price),
+            description,
+            category,
+            brand,
+            stock: parseInt(stock),
+          };
+
+          const imageFiles = Array.from(images);
+          const imageUrls = await Promise.all(
+            imageFiles.map(async (imageFile) => {
+              const imageUrl = await uploadImage(imageFile);
+              return imageUrl;
+            })
+          );
+
+          productData.images = imageUrls;
+
+          fetch("/admin/product", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(productData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.errMsg) showMsg(data.errMsg, "red");
+              else {
+                showMsg("Product added successfully", "green");
+                location.reload();
+              }
+            })
+            .catch((error) => {
+              showMsg("Error: " + error, "red");
+            });
+        });
+
+      async function uploadImage(imageFile) {
+        const formData = new FormData();
+        formData.append("image", imageFile);
+
+        const response = await fetch("/admin/upload/image", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await response.json();
+        return data.imageUrl;
+      }
+    </script>
+
+    <script type="module">
+      import showMsg from "/js/toastify.js";
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll(".delete-button").forEach((button) => {
+          button.addEventListener("click", (event) => {
+            const productId = event.target.getAttribute("data-id");
+
+            fetch(`/admin/product/${productId}`, {
+              method: "DELETE",
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.errMsg) showMsg(data.errMsg, "red");
+                else {
+                  showMsg("Product added successfully", "green");
+                  location.reload();
+                }
+              })
+              .catch((error) => {
+                showMsg("Error: " + error, "red");
+              });
+          });
+        });
+      });
+    </script>
   </body>
 </html>

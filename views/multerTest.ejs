@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Upload</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Upload an Image</h1>
+      <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" />
+        <input type="submit" value="Upload" />
+      </form>
+      <% if (typeof msg !== 'undefined') { %>
+      <h2><%= msg %></h2>
+      <% } %> <% if (typeof file !== 'undefined') { %>
+      <img src="<%= file %>" alt="Uploaded Image" />
+      <% } %>
+    </div>
+  </body>
+</html>

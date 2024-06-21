@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
+
 const userSchema = mongoose.Schema(
   {
     fullName: {
@@ -46,7 +47,6 @@ const userSchema = mongoose.Schema(
       enum: ["male", "female"],
       required: false,
     },
-    reviews: [{ type: mongoose.Schema.Types.ObjectId, ref: "Reviews" }],
   },
   {
     timestamps: true,
