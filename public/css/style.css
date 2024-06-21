@@ -736,6 +736,13 @@ align-items: center;
     right: 0;
   }
 }
+/* Hide images on tablets (768px to 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .image img {
+    display: none;
+  }
+}
+
 
 
 /* Max-width 900px - Mobile and below */
@@ -839,5 +846,3 @@ align-items: center;
     width: 80%;
   }
 }
-
-
