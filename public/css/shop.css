@@ -1,0 +1,149 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #f1f1f1 !important;
+}
+
+body .container {
+  max-width: 1100px;
+}
+
+.cart {
+  background-color: white;
+  width: 30%;
+  height: 100vh;
+  position: fixed;
+  right: 0;
+  top: 0px;
+  z-index: 999;
+  transform: translateX(100%);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.cart:hover {
+  transform: translateX(0);
+}
+
+.cart h1 {
+  font-size: 20px;
+  background-color: white;
+  position: absolute;
+  top: 40%;
+  transform: rotate(90deg);
+  left: -70px;
+  padding: 10px 20px;
+  border-radius: 0 10px;
+}
+.cart .cart-container {
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.cart .product-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.cart .product-image {
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+}
+
+.cart .product-name {
+  flex: 1;
+  padding: 0 10px;
+}
+
+.cart .product-quantity {
+  padding: 0 10px;
+}
+
+.cart button {
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 5px;
+  transition: background-color 0.3s;
+}
+
+.cart button:hover {
+  background-color: #45a049;
+}
+
+.cart .total-price {
+  text-align: right;
+  font-weight: bold;
+  padding-top: 10px;
+  position: absolute;
+}
+
+#filter-buttons button {
+  border-radius: 3px;
+  background: #fff;
+  border-color: transparent;
+}
+
+#filter-buttons button:hover {
+  background: #ddd;
+}
+
+#filter-buttons button.active {
+  color: #fff;
+  background: #6c757d;
+}
+
+#filterable-cards .card {
+  width: 15rem;
+  border: 2px solid transparent;
+}
+
+#filterable-cards img {
+  width: 100%;
+  height: 300px;
+}
+
+#filterable-cards .card button {
+  border: none;
+  background-color: rgb(165, 33, 33);
+  padding: 10px 14px;
+  color: white;
+  border-radius: 4px;
+  font-size: 15px;
+  float: right;
+}
+
+#filterable-cards .card button:hover {
+  background-color: rgba(205, 53, 53, 0.791);
+}
+
+#filterable-cards .card.hide {
+  display: none;
+}
+
+.arrows {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+@media (max-width: 600px) {
+  #filterable-cards {
+    justify-content: center;
+  }
+
+  #filterable-cards .card {
+    width: calc(100% / 2 - 10px);
+  }
+}
