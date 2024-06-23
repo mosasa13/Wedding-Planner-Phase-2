@@ -1,8 +1,10 @@
+import User from "../../models/User.js";
+
 const home_get = async (req, res) => {
-  res.render("user/home", {
+  res.render("index", {
     title: "Home",
+    user: await User.findById(req.params.id),
   });
 };
-export const home_post = async (req, res) => {};
 
-export default { home_get, home_post };
+export default { home_get };

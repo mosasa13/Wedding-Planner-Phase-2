@@ -1,9 +1,9 @@
-import userModel from "../../models/User.js";
+import User from "../../models/User.js";
 
 const chat_get = async (req, res) => {
   res.render("admin/chats", {
     title: "Chats",
-    user: await userModel.findById(req.params.id),
+    user: await User.findById(req.params.id),
   });
 };
 
