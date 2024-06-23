@@ -1,11 +1,11 @@
-import userModel from "../../models/User.js";
+import User from "../../models/User.js";
 import mongoose from "mongoose";
 
 const users_get = async (req, res) => {
   res.render("admin/users", {
     title: "Users",
-    user: await userModel.findById(req.params.id),
-    users: await userModel.find(),
+    user: await User.findById(req.params.id),
+    users: await User.find(),
   });
 };
 
@@ -15,16 +15,16 @@ const users_post = async (req, res) => {
     const { email, username, password, role, fullName, gender, phone, city } =
       req.body;
 
-    if (await userModel.findOne({ email }))
+    if (await User.findOne({ email }))
       return res.status(409).json({ errMsg: "Email is Taken" });
 
-    if (await userModel.findOne({ username }))
+    if (await User.findOne({ username }))
       return res.status(409).json({ errMsg: "Username is Taken" });
 
-    if (await userModel.findOne({ phone }))
+    if (await User.findOne({ phone }))
       return res.status(409).json({ errMsg: "Phone number is Taken" });
 
-    newUser = new userModel({
+    newUser = new User({
       email,
       username,
       password,
@@ -48,7 +48,7 @@ const users_delete = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(userId))
     return res.status(404).send(`No user with id: ${userId}`);
 
-  await userModel.findByIdAndDelete(userId);
+  await User.findByIdAndDelete(userId);
 
   res.json({ message: "User deleted successfully" });
 };
