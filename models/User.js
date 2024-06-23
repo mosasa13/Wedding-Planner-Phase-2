@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
 
-const userSchema = mongoose.Schema(
+const { Schema } = mongoose;
+
+const userSchema = new Schema(
   {
     fullName: {
       type: String,
@@ -26,7 +28,7 @@ const userSchema = mongoose.Schema(
     },
     password: {
       type: String,
-      required: [false, "Password is required"],
+      required: [true, "Password is required"],
     },
     role: {
       type: String,
@@ -35,17 +37,48 @@ const userSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      required: false,
       unique: true,
     },
-    city: {
-      type: String,
-      required: false,
-    },
+    city: String,
     gender: {
       type: String,
       enum: ["male", "female"],
-      required: false,
+    },
+    orders: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Order",
+      },
+    ],
+    cart: {
+      products: [
+        {
+          productId: {
+            type: Schema.Types.ObjectId,
+            ref: "Product",
+            required: true,
+          },
+          productQuantity: {
+            type: Number,
+            required: true,
+            min: 1,
+          },
+        },
+      ],
+      services: [
+        {
+          serviceId: {
+            type: Schema.Types.ObjectId,
+            ref: "Service",
+            required: true,
+          },
+          serviceQuantity: {
+            type: Number,
+            required: true,
+            min: 1,
+          },
+        },
+      ],
     },
   },
   {
@@ -55,21 +88,15 @@ const userSchema = mongoose.Schema(
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
-    // only run if password is modified, otherwise it will change every time we save the user!
     return next();
   }
-  const password = this.password;
   const salt = await bcrypt.genSalt();
-  const hashedPassword = bcrypt.hashSync(password, salt);
-  this.password = hashedPassword;
-
+  this.password = await bcrypt.hash(this.password, salt);
   next();
 });
 
-// comparePassword
-userSchema.methods.comparePassword = function (password, hash) {
-  const isPasswordValid = bcrypt.compareSync(password, hash);
-  return isPasswordValid;
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
 };
 
 const User = mongoose.model("User", userSchema);
